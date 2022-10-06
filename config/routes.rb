@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   root :to =>"homes#top"
   get "home/about"=>"homes#about"
 
-  resources :groups, except: [:destroy]
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resources :book_comments,only:[:create,:destroy]
     resource :favorites,only:[:create,:destroy]
@@ -17,7 +16,10 @@ Rails.application.routes.draw do
     resource :relationships,only: [:create,:destroy]
     get 'follows' => 'relationships#followings'
     get 'followers' => 'relationships#followers'
+  end
 
+  resources :groups do
+    get "join" => "groups#join"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
