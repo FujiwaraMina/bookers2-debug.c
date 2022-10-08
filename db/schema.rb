@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_05_021820) do
+ActiveRecord::Schema.define(version: 2022_10_08_033000) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(version: 2022_10_05_021820) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "mail_title"
+    t.string "mail_content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "book_id"
@@ -66,6 +73,8 @@ ActiveRecord::Schema.define(version: 2022_10_05_021820) do
   create_table "group_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"
+    t.string "mail_title"
+    t.string "mail_content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_group_users_on_group_id"
