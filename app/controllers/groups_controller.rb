@@ -63,14 +63,26 @@ class GroupsController < ApplicationController
 
   def new_mail
     @group = Group.find(params[:group_id])
+    binding.pry
   end
 
   def send_mail
     @group = Group.find(params[:group_id])
-    group_users = @group.users
     @mail_title = params[:mail_title]
     @mail_content = params[:mail_content]
-    ContactMailer.send_mail(@mail_title, @mail_content, group_users).deliver
+
+    event = {
+      :group => @group,
+      :mail_title => @mail_title,
+      :mail_content => @mail_content
+    }
+
+    ContactMailer.send_mail(event).deliver
+    render "sent"
+  end
+
+  def sent
+    redirect_to group_send_mail_path(params[:group_id])
   end
 
 end

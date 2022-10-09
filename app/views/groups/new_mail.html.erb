@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>Event Mail</h2>
-      <%= form_with url: group_send_mail_path(groups_path), method: :get do |f| %>
+      <%= form_with url: group_send_mail_path, method: :get, local:true do |f| %>
       <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :mail_title, class: "form-control" %>
@@ -12,7 +12,7 @@
         <%= f.text_area :mail_content, class: "form-control" %>
       </div>
       <div>
-        <%= f.submit "送信" %>
+        <%= f.submit "Send", class: 'btn btn-success' %>
       </div>
       <% end %>
     </div>
